@@ -21,7 +21,7 @@ describe("filterLongString", ()=>{
     
     test("Handles empty output array", ()=>{
         const inputArray= ['cat', 'dog', 'rat']
-        const filteredArray = filterLongStrings(['cat', 'dog', 'rat'], 3);
+        const filteredArray = filterLongStrings(input, 3);
         const expectedArray = []
         expect(expectedArray).toEqual([])
         expect(filteredArray).toEqual(expectedArray);

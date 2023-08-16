@@ -36,7 +36,7 @@ describe("QuesFourFilter", ()=>{
           const filteredNames = filteredArray.map((item)=>item.name)
           const expectedArray = ["Item 1", "Item 3"]
           for(let i = 0; i<filteredNames.length; i++){
-             expect(filteredNames).toContain(expectedArray[i])
+             expect(filteredNames).toContainEqual(expectedArray[i])
           }
         })
 
@@ -47,7 +47,7 @@ describe("QuesFourFilter", ()=>{
           const filteredNames = filteredArray.map((item)=>item.name)
           const expectedArray = ["Item 2", "Item 4"]
           for(let i = 0; i<filteredNames.length; i++){
-             expect(filteredNames).not.toContain(expectedArray[i])
+             expect(filteredNames).not.toContainEqual(expectedArray[i])
           }
         })
 

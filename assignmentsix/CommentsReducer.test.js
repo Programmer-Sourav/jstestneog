@@ -1,12 +1,16 @@
-import cartReducer, { initialState } from "./cart.reducer";
+const commentsReducer = require("./CommentsReducer");
+
 
 describe("testing comment reducer", () => {
   test("should add comment", () => {
+    const initialState = {
+      comments: []
+   }
     let action = {
       type: "ADD_COMMENT",
       payload: {
         comment: {
-          id: "1",
+          id: 1,
           text: "Nice!",
           votes: 0, 
           replies: []
@@ -14,7 +18,7 @@ describe("testing comment reducer", () => {
       }
     };
 
-    let state = cartReducer(initialState, action);
+    let state = commentsReducer(initialState, action);
     expect(state).toEqual({
       comments: [
         {
@@ -53,7 +57,7 @@ describe("testing comment reducer", () => {
     };
 
     const finalState = {
-      items: [
+      comments: [
         {
             id: 2,
             text: "Great!",
@@ -63,7 +67,7 @@ describe("testing comment reducer", () => {
       ]
     };
 
-    const reducedState = cartReducer(initialState, action);
+    const reducedState = commentsReducer(initialState, action);
 
     expect(reducedState).toEqual(finalState);
   });
@@ -94,7 +98,7 @@ describe("testing comment reducer", () => {
     };
 
     const finalState = {
-      items: [
+      comments: [
         {
             id: 1,
             text: "Nice!",
@@ -110,7 +114,7 @@ describe("testing comment reducer", () => {
       ]
     };
 
-    const reducedState = cartReducer(initialState, action);
+    const reducedState = commentsReducer(initialState, action);
 
     expect(reducedState).toEqual(finalState);
   });
@@ -141,23 +145,23 @@ describe("testing comment reducer", () => {
     };
 
     const finalState = {
-      items: [
+       comments: [
         {
             id: 1,
             text: "Nice!",
-            votes: 1, 
+            votes: 0, 
             replies: []
           },
           {
             id: 2,
             text: "Great!",
             votes: 0, 
-            replies: ["Superb work"]
+            replies: [{id: 1, text: "Superb work"}]
           }
       ]
     };
 
-    const reducedState = cartReducer(initialState, action);
+    const reducedState = commentsReducer(initialState, action);
 
     expect(reducedState).toEqual(finalState);
   });
@@ -176,7 +180,7 @@ describe("testing comment reducer", () => {
               id: 2,
               text: "Great!",
               votes: 0, 
-              replies: ["Superb work"]
+              replies: [{id: 1, text: "Superb work"}]
             }
           ]
     };
@@ -189,11 +193,11 @@ describe("testing comment reducer", () => {
     };
 
     const finalState = {
-      items: [
+      comments: [
         {
             id: 1,
             text: "Nice!",
-            votes: 1, 
+            votes: 0, 
             replies: []
           },
           {
@@ -205,7 +209,7 @@ describe("testing comment reducer", () => {
       ]
     };
 
-    const reducedState = cartReducer(initialState, action);
+    const reducedState = commentsReducer(initialState, action);
 
     expect(reducedState).toEqual(finalState);
   });
@@ -237,11 +241,11 @@ describe("testing comment reducer", () => {
     };
 
     const finalState = {
-      items: [
+      comments: [
         {
             id: 1,
             text: "Nice!",
-            votes: 1, 
+            votes: 0, 
             replies: []
           },
           {
@@ -253,7 +257,7 @@ describe("testing comment reducer", () => {
       ]
     };
 
-    const reducedState = cartReducer(initialState, action);
+    const reducedState = commentsReducer(initialState, action);
 
     expect(reducedState).toEqual(finalState);
   });

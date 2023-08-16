@@ -32,7 +32,7 @@ const initialState = {
         const itemToBeIncremented = state.items.find(
             (item) => item.id === action.payload.itemId
           );
-          const items1 = state.items.map((item) =>
+          items = state.items.map((item) =>
             item.id === action.payload.itemId
               ? { ...item, quantity: item.quantity + 1 }
               : item

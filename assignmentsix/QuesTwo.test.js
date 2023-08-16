@@ -29,8 +29,11 @@ describe("QuesTwo", ()=>{
         expect(input).toEqual(output); 
     });
     test("Reverse and check individual characters", ()=>{
-        expect(reverseStrings(['abc', '123'])).toContain('cba');
-        expect(reverseStrings(['abc', '123'])).toContain('321');
+        const inputArray = ['abc', '123']
+        const expectedArray = reverseStrings(inputArray)
+        const expectedOutput = ['cba', '321']
+        expect(expectedArray).toContainEqual('cba')
+        expect(expectedArray).toContainEqual('321')
     });
     })
     })

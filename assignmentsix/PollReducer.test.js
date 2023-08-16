@@ -25,7 +25,7 @@ describe("Poll Reducer", ()=>{
     it("VOTE", ()=>{
         const initialState = { polls: [{id: 1, question: "Do you love your city?", options: [{text: "Yes", votes: 0}]}]}
    
-        const action = {type: 'VOTE', payload: {pollId: 1} }
+        const action = {type: 'VOTE', payload: {pollId: 1, optionText: "Yes"} }
    
        const updatedState = pollReducer(initialState, action)
    

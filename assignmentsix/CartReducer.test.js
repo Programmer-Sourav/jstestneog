@@ -66,7 +66,7 @@ describe("testing cart", ()=>{
     
          expect(updatedState).toEqual({
             items: [{id:1, product: "Pen", price: 100, quantity: 1}, 
-                    {id: 2, product: "Pencil", price: 20, quantity: 2 }], 
+                    {id: 2, product: "Pencil", price: 20, quantity: 3 }], 
             totalQuantity : 3, 
             totalPrice: 160
          })

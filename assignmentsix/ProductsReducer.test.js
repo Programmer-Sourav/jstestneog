@@ -1,208 +1,67 @@
-import cartReducer, { initialState } from "./cart.reducer";
 
-describe("testing comment reducer", () => {
-  test("should add comment", () => {
+const { productsReducer, initialState } = require('./ProductsReducer');
+
+
+
+describe("testing product reducer", () => {
+  test("updates category filter", () => {
     let action = {
       type: "SET_CATEGORY_FILTER",
       payload: {
-        category: {value: "Electronics"}
+        value: "Electronics"
       }
     };
 
-    let state = cartReducer(initialState, action);
-    expect(state).toEqual({
-      comments: [
-        {
-          id: 1,
-          text: "Nice!",
-          votes: 0,
-          replies: []
-        }
-      ]
-    });
+    let state = productsReducer(initialState, action);
+    expect(state.filters.category).toBe("Electronics");
   });
 
-  test("should remove comment", () => {
-    const initialState = {
-      comments: [
-        {
-          id: 1,
-          text: "Nice!",
-          votes: 0, 
-          replies: []
-        },
-        {
-          id: 2,
-          text: "Great!",
-          votes: 0, 
-          replies: []
-        }
-      ]
-    };
-
-    const action = {
-      type: "SEARCH_QUERY",
+  test("should update search", () => {
+     const action = {
+      type: "SET_SEARCH_QUERY",
       payload: {
         search: "Phone"
       }
     };
-
-    const finalState = {
-      items: [
-        {
-            id: 2,
-            text: "Great!",
-            votes: 0, 
-            replies: []
-          }
-      ]
-    };
-
-    const reducedState = cartReducer(initialState, action);
-
-    expect(reducedState).toEqual(finalState);
+    let updatedState = productsReducer(initialState, action);
+    expect(updatedState.filters.searchQuery).toBe("Phone");
   });
 
-  test("should upvote comment", () => {
-    const initialState = {
-        comments: [
-            {
-              id: 1,
-              text: "Nice!",
-              votes: 0, 
-              replies: []
-            },
-            {
-              id: 2,
-              text: "Great!",
-              votes: 0, 
-              replies: []
-            }
-          ]
-    };
-
+  test("should update sort", () => {
     const action = {
       type: "SET_SORT",
       payload: {
         value: "name"
       }
     };
+    const updatedState = productsReducer(initialState, action);
 
-    const finalState = {
-      items: [
-        {
-            id: 1,
-            text: "Nice!",
-            votes: 1, 
-            replies: []
-          },
-          {
-            id: 2,
-            text: "Great!",
-            votes: 0, 
-            replies: []
-          }
-      ]
-    };
-
-    const reducedState = cartReducer(initialState, action);
-
-    expect(reducedState).toEqual(finalState);
+    expect(updatedState.filters.sortBy).toBe("name");
   });
 
-  test("should add reply", () => {
-    const initialState = {
-        comments: [
-            {
-              id: 1,
-              text: "Nice!",
-              votes: 0, 
-              replies: []
-            },
-            {
-              id: 2,
-              text: "Great!",
-              votes: 0, 
-              replies: []
-            }
-          ]
-    };
-
-    const action = {
+  test("should set price range", () => {
+   const action = {
       type: "SET_PRICE_RANGE",
       payload: {
-        min: { min: 0, max: 1000 }
+        value: { min: 20, max: 800 }
       }
     };
 
-    const finalState = {
-      items: [
-        {
-            id: 1,
-            text: "Nice!",
-            votes: 1, 
-            replies: []
-          },
-          {
-            id: 2,
-            text: "Great!",
-            votes: 0, 
-            replies: ["Superb work"]
-          }
-      ]
-    };
-
-    const reducedState = cartReducer(initialState, action);
-
-    expect(reducedState).toEqual(finalState);
+    const updatedState = productsReducer(initialState, action);
+    const finalState = { min: 20, max: 800 }
+    expect(updatedState.filters.priceRange).toEqual(finalState);
   });
 
 
-  test("should remove reply", () => {
-    const initialState = {
-        comments: [
-            {
-              id: 1,
-              text: "Nice!",
-              votes: 0, 
-              replies: []
-            },
-            {
-              id: 2,
-              text: "Great!",
-              votes: 0, 
-              replies: ["Superb work"]
-            }
-          ]
-    };
-
-    const action = {
+  test("should toggle availbility", () => {
+   const action = {
       type: "TOGGLE_AVAILABILITY",
       payload: {
         productId: 1
       }
     };
-
-    const finalState = {
-      items: [
-        {
-            id: 1,
-            text: "Nice!",
-            votes: 1, 
-            replies: []
-          },
-          {
-            id: 2,
-            text: "Great!",
-            votes: 0, 
-            replies: []
-          }
-      ]
-    };
-
-    const reducedState = cartReducer(initialState, action);
-
-    expect(reducedState).toEqual(finalState);
+    const updatedState = productsReducer(initialState, action);
+    expect(updatedState.products[0].inStock).toBe(false);
   });
 
 

@@ -18,20 +18,23 @@ describe("QuesFourReduce", ()=>{
               }
             expect(reducedResult).toEqual(expectedOutput)
         })
-    })
 
-    describe("Group objects by an empty property", ()=>{
+    test("Group objects by an empty property", ()=>{
         const reducedResult = groupByProperty(students, '')
         const expectedOutput = {
-            '': [ { name: 'Alice', age: 25 }, { name: 'Carol', age: 25 } ],
-            '': [ { name: 'Bob', age: 30 } ]
-          }
+          '': [
+            { name: 'Alice', age: 25 },
+            { name: 'Bob', age: 30 },
+            { name: 'Carol', age: 25 }
+          ]
+        }
           expect(reducedResult).toEqual(expectedOutput)
     })
 
-    describe("Group objects with no objects", ()=>{
+    test("Group objects with no objects", ()=>{
         const reducedResults = groupByProperty([], 'age')
         const expectedResult = {}
         expect(reducedResults).toEqual(expectedResult)
     })
+  })
 })
